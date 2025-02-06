@@ -30,7 +30,18 @@ BoardMapper is an open-source tool designed to automatically generate a componen
     - **Y**: Quartz / Resonator
     - **SP**: Speaker
     - **ANT**: Antenna
-
+    
+    **Shortcuts for LabelImg:**
+    - **W**: Draw a new rectangular bounding box (RectBox)
+    - **D**: Delete the last drawn bounding box
+    - **Ctrl + S**: Save the annotation (XML)
+    - **Ctrl + Z**: Undo the last action
+    - **Ctrl + C**: Copy a bounding box
+    - **Ctrl + V**: Paste a copied bounding box
+    - **Ctrl + A**: Select all bounding boxes
+    - **Ctrl + R**: Rotate the image (for better labeling)
+    - **Esc**: Cancel the current operation or close a dialog box
+    
     After labeling, save the file as `top.xml`.
 5) Repeat the same steps with `bottom.png` to create `bottom.xml`.
 6) Place `top.xml` and `bottom.xml` into the `input` folder.
