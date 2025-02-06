@@ -1,52 +1,92 @@
 # BoardMapper
 
 ## Overview
-BoardMapper is an open-source tool designed to automatically generate a component placement map for PCBs. It labels component references (U1, R1, C1, etc.) directly on the board image, simplifying assembly and troubleshooting.
+BoardMapper is an open-source tool designed to automatically generate a component placement map for PCBs (Printed Circuit Boards). It labels component references (e.g., U1, R1, C1) directly on the board image, simplifying assembly, troubleshooting, and component identification.
 
 ## Purpose
 - **Automation**: Eliminates the need for manual placement annotation on PCB layouts.
-- **Efficiency**: Saves time for engineers and makers working on PCB assembly.
-- **Clarity**: Provides a clear visual reference for debugging and manufacturing.
+- **Efficiency**: Saves time for engineers and makers working on PCB assembly and debugging.
+- **Clarity**: Provides a clear visual reference for debugging, testing, and manufacturing.
+- **Cross-Platform**: Works on Windows, Linux, and macOS systems.
 
-## Instructions
+## Requirements
+- **Python**: Version 3.6 or higher
+- **Required Libraries**:
+  - `opencv-python` (for image processing)
+  - `lxml` (for XML parsing)
 
-### Steps:
-1) Take a photo of both the top and bottom layers of the chosen PCB.
-2) Place `top.png` and `bottom.png` into the `input` folder.
-3) Install the latest version of LabelImg from the following link: [LabelImg Releases](https://github.com/HumanSignal/labelImg/releases).
-4) Open `top.png` in LabelImg, and draw bounding boxes around each component, labeling them according to their type:
-    - **R**: Resistor
-    - **C**: Capacitor
-    - **L**: Inductor
-    - **F**: Fuse
-    - **POT**: Potentiometer
-    - **D**: Diode
-    - **LED**: LED
-    - **Q**: Transistor (BJT, MOSFET)
-    - **U**: Integrated Circuit (IC)
-    - **J**: Connector
-    - **K**: Relay
-    - **SW**: Switch
-    - **Y**: Quartz / Resonator
-    - **SP**: Speaker
-    - **ANT**: Antenna
-    
-    **Shortcuts for LabelImg:**
-    - **W**: Draw a new rectangular bounding box (RectBox)
-    - **D**: Delete the last drawn bounding box
-    - **Ctrl + S**: Save the annotation (XML)
-    - **Ctrl + Z**: Undo the last action
-    - **Ctrl + C**: Copy a bounding box
-    - **Ctrl + V**: Paste a copied bounding box
-    - **Ctrl + A**: Select all bounding boxes
-    - **Ctrl + R**: Rotate the image (for better labeling)
-    - **Esc**: Cancel the current operation or close a dialog box
-    
-    After labeling, save the file as `top.xml`.
-5) Repeat the same steps with `bottom.png` to create `bottom.xml`.
-6) Place `top.xml` and `bottom.xml` into the `input` folder.
-7) Double-click on `main.py` to run the tool.
-8) Navigate to the `output` folder to retrieve the resulting annotated images: `top_annotated.png` and `bottom_annotated.png`.
+## Installation Instructions
+
+### Setup
+1. **Clone the repository** or **Download the project** to your local machine.
+
+2. **Dependencies**: 
+    - Install the required Python libraries:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+    Alternatively, if you're using Windows, run the `setup_and_run.bat` file to automatically create a virtual environment and install dependencies.
+
+    For **Linux/macOS**, run the `setup_and_run.sh` file for the same process.
+
+3. **Labeling the PCB**:
+   - **Step 1**: Take a photo of both the top and bottom layers of the chosen PCB.
+   - **Step 2**: Place the `top.png` and `bottom.png` images into the `input` folder.
+   - **Step 3**: Install the latest version of [LabelImg](https://github.com/HumanSignal/labelImg/releases).
+   - **Step 4**: Open `top.png` in LabelImg and draw bounding boxes around each component. Label each component according to its type:
+     - **R**: Resistor
+     - **C**: Capacitor
+     - **L**: Inductor
+     - **F**: Fuse
+     - **POT**: Potentiometer
+     - **D**: Diode
+     - **LED**: LED
+     - **Q**: Transistor (BJT, MOSFET)
+     - **U**: Integrated Circuit (IC)
+     - **J**: Connector
+     - **K**: Relay
+     - **SW**: Switch
+     - **Y**: Quartz / Resonator
+     - **SP**: Speaker
+     - **ANT**: Antenna
+     
+     **LabelImg Shortcuts**:
+     - **W**: Draw a new rectangular bounding box (RectBox)
+     - **D**: Delete the last drawn bounding box
+     - **Ctrl + S**: Save the annotation as an XML file
+     - **Ctrl + Z**: Undo the last action
+     - **Ctrl + C**: Copy a bounding box
+     - **Ctrl + V**: Paste a copied bounding box
+     - **Ctrl + A**: Select all bounding boxes
+     - **Ctrl + R**: Rotate the image (for better labeling)
+     - **Esc**: Cancel the current operation or close a dialog box
+
+   - **Step 5**: After labeling the `top.png`, save the annotation as `top.xml`.
+   - **Step 6**: Repeat the labeling process for the `bottom.png` and save it as `bottom.xml`.
+   - **Step 7**: Place both `top.xml` and `bottom.xml` into the `input` folder.
+
+4. **Running the Tool**:
+   - **Windows**: Double-click on `main.py` to automatically run the script. The tool will read the XML annotations, draw bounding boxes on the images, and save the annotated images.
+   - **Linux/macOS**: You can run the script from the terminal:
+     ```bash
+     python main.py
+     ```
+
+5. **Output**: 
+   - After the script has executed, navigate to the `output` folder to find the resulting annotated images:
+     - `top_annotated.png`
+     - `bottom_annotated.png`
+
+## Contributions
+If you'd like to contribute to the project, please follow these steps:
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a pull request
+
+We welcome any contributions to improve BoardMapper!
 
 ## License
-This project is open-source. Feel free to use, modify, and contribute!
+This project is open-source and licensed under the MIT License. Feel free to use, modify, and contribute!
