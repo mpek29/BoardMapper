@@ -59,8 +59,10 @@ BoardMapper is an open-source tool designed to automatically generate a componen
 3. **Running the Tool**:
    - **Windows**: Double-click on `setup_and_run.bat` to automatically run the script. The tool will read the XML annotations, draw bounding boxes on the images, and save the annotated images.
    - **Linux/macOS**: You can run the script from the terminal:
-     ```chmod +x script.sh
-     ./script.sh```
+     ```
+     chmod +x script.sh
+     ./script.sh
+     ```
 
 5. **Output**: 
    - After the script has executed, navigate to the `output` folder to find the resulting annotated images:
