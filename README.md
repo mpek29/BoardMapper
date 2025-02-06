@@ -20,17 +20,7 @@ BoardMapper is an open-source tool designed to automatically generate a componen
 ### Setup
 1. **Clone the repository** or **Download the project** to your local machine.
 
-2. **Dependencies**: 
-    - Install the required Python libraries:
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-    Alternatively, if you're using Windows, run the `setup_and_run.bat` file to automatically create a virtual environment and install dependencies.
-
-    For **Linux/macOS**, run the `setup_and_run.sh` file for the same process.
-
-3. **Labeling the PCB**:
+2. **Labeling the PCB**:
    - **Step 1**: Take a photo of both the top and bottom layers of the chosen PCB.
    - **Step 2**: Place the `top.png` and `bottom.png` images into the `input` folder.
    - **Step 3**: Install the latest version of [LabelImg](https://github.com/HumanSignal/labelImg/releases).
@@ -66,11 +56,12 @@ BoardMapper is an open-source tool designed to automatically generate a componen
    - **Step 6**: Repeat the labeling process for the `bottom.png` and save it as `bottom.xml`.
    - **Step 7**: Place both `top.xml` and `bottom.xml` into the `input` folder.
 
-4. **Running the Tool**:
-   - **Windows**: Double-click on `main.py` to automatically run the script. The tool will read the XML annotations, draw bounding boxes on the images, and save the annotated images.
+3. **Running the Tool**:
+   - **Windows**: Double-click on `setup_and_run.bat` to automatically run the script. The tool will read the XML annotations, draw bounding boxes on the images, and save the annotated images.
    - **Linux/macOS**: You can run the script from the terminal:
-     ```bash
-     python main.py
+     ```
+     chmod +x script.sh
+    ./script.sh
      ```
 
 5. **Output**: 
@@ -89,4 +80,4 @@ If you'd like to contribute to the project, please follow these steps:
 We welcome any contributions to improve BoardMapper!
 
 ## License
-This project is open-source and licensed under the MIT License. Feel free to use, modify, and contribute!
+This project is open-source. Feel free to use, modify, and contribute!
