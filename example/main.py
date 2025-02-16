@@ -3,6 +3,7 @@ import re
 import cv2
 import xml.etree.ElementTree as ET
 from collections import defaultdict
+from itertools import groupby
 from typing import Dict, Tuple
 
 def extract_component_number(label: str) -> Tuple[str, int]:
@@ -42,9 +43,24 @@ def draw_boxes(image_path: str, xml_path: str, output_path: str, counters: Dict[
             print("Warning: Skipping invalid bounding box entry in XML.")
             continue
 
+    # Trier les composants en zigzag
+    components.sort(key=lambda x: x[2])  # Trier d'abord par ymin (de haut en bas)
+    
+    grouped_components = []
+    for _, group in groupby(components, key=lambda x: x[2] // 10):  # Grouper en bandes de 10px en hauteur
+        group = list(group)
+        if len(grouped_components) % 2 == 0:
+            group.sort(key=lambda x: x[1])  # Trier de gauche à droite
+        else:
+            group.sort(key=lambda x: x[1], reverse=True)  # Trier de droite à gauche
+        grouped_components.extend(group)
+
+    components = grouped_components  # Mettre à jour avec le nouvel ordre trié
+
+    # Dessiner les boîtes et le texte
     for label, xmin, ymin, xmax, ymax in components:
-        cv2.rectangle(image, (xmin, ymin), (xmax, ymax), (255, 255, 255), thickness=-1)
-        component_type = label[0]  # First letter represents the component type
+        cv2.rectangle(image, (xmin, ymin), (xmax, ymax), (255, 255, 255), thickness=-1)  # Dessiner une boîte blanche
+        component_type = label[0]  # Première lettre = type de composant
         counters[component_type] += 1
         num_label = f"{label}{counters[component_type]}"
         
@@ -57,7 +73,7 @@ def draw_boxes(image_path: str, xml_path: str, output_path: str, counters: Dict[
         text_x = xmin + (xmax - xmin - text_width) // 2
         text_y = ymin + (ymax - ymin + text_height) // 2
         
-        cv2.putText(image, num_label, (text_x, text_y), font, font_scale, (0, 0, 0), 1, cv2.LINE_AA)
+        cv2.putText(image, num_label, (text_x, text_y), font, font_scale, (0, 0, 0), 1, cv2.LINE_AA)  # Texte noir
     
     cv2.imwrite(output_path, image)
     print(f"Annotated image saved: {output_path}")
