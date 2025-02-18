@@ -43,24 +43,24 @@ def draw_boxes(image_path: str, xml_path: str, output_path: str, counters: Dict[
             print("Warning: Skipping invalid bounding box entry in XML.")
             continue
 
-    # Trier les composants en zigzag
-    components.sort(key=lambda x: x[2])  # Trier d'abord par ymin (de haut en bas)
+    # Sort components in a zigzag pattern
+    components.sort(key=lambda x: x[2])  # Sort first by ymin (top to bottom)
     
     grouped_components = []
-    for _, group in groupby(components, key=lambda x: x[2] // 10):  # Grouper en bandes de 10px en hauteur
+    for _, group in groupby(components, key=lambda x: x[2] // 10):  # Group into 10px high strips
         group = list(group)
         if len(grouped_components) % 2 == 0:
-            group.sort(key=lambda x: x[1])  # Trier de gauche à droite
+            group.sort(key=lambda x: x[1])  # Sort from left to right
         else:
-            group.sort(key=lambda x: x[1], reverse=True)  # Trier de droite à gauche
+            group.sort(key=lambda x: x[1], reverse=True)  # Sort from right to left
         grouped_components.extend(group)
 
-    components = grouped_components  # Mettre à jour avec le nouvel ordre trié
+    components = grouped_components  # Update with new sort order
 
-    # Dessiner les boîtes et le texte
+    # Drawing boxes and text
     for label, xmin, ymin, xmax, ymax in components:
-        cv2.rectangle(image, (xmin, ymin), (xmax, ymax), (255, 255, 255), thickness=-1)  # Dessiner une boîte blanche
-        component_type = label[0]  # Première lettre = type de composant
+        cv2.rectangle(image, (xmin, ymin), (xmax, ymax), (255, 255, 255), thickness=-1)  # Drawing a white box
+        component_type = label[0]  # First letter = component type
         counters[component_type] += 1
         num_label = f"{label}{counters[component_type]}"
         
