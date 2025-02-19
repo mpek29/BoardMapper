@@ -1,6 +1,8 @@
 # BoardMapper
 
 ## Aperçu
+
+![Main Preview](assets/img/main.png)
 BoardMapper est un outil open-source conçu pour générer automatiquement des schémas d'implantation pour des circuits imprimés (PCB). Il note les références des composants (par exemple U1, R1, C1) directement sur l'image du circuit, ce qui facilite l'identification des composants à des fins de rétro-ingénierie.
 
 ## Objectif
