@@ -9,6 +9,13 @@ BoardMapper est un outil open-source conçu pour générer automatiquement des s
 - **Clarté** : Fournit une référence visuelle claire pour le dépannage, les tests et la fabrication.
 - **Multi-plateforme** : Fonctionne sous Windows, Linux et macOS.
 
+## Annotation
+
+| Position | Original | Annoté |
+|----------|---------|-----------|
+| **Top** | <img src="example/input/top.png" width="200"> | <img src="example/output/top_annotated.png" width="200"> |
+| **Bottom** | <img src="example/input/bottom.png" width="200"> | <img src="example/output/bottom_annotated.png" width="200"> |
+
 ## Prérequis
 - **Python** : Version 3.6 ou supérieure
 - **Bibliothèques requises** :
