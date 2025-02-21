@@ -17,8 +17,8 @@ BoardMapper is an open-source tool designed to automatically generate PCB layout
 
 | Position | Original | Annotated |
 |----------|----------|-----------|
-| **Top**  | <img src="example/input/top.png" width="200"> | <img src="example/output/top_annotated.png" width="200"> |
-| **Bottom** | <img src="example/input/bottom.png" width="200"> | <img src="example/output/bottom_annotated.png" width="200"> |
+| **Top**  | <img src="assets/img/top.png" width="300"> | <img src="assets/img/top_annotated.png" width="300"> |
+| **Bottom** | <img src="assets/img/bottom.png" width="300"> | <img src="assets/img/bottom_annotated.png" width="300"> |
 
 ## 📋 Requirements
 - **Python**: Version 3.6 or higher
